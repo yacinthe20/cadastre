@@ -6,7 +6,7 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
@@ -24,7 +24,7 @@
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.js"></script>
         <script src="js/multi-style-layer.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
@@ -47,7 +47,6 @@
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
             primaryLengthUnit: 'meters',
@@ -95,19 +94,17 @@
         function pop_Arrondissement_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Nom_Arro'] !== null ? autolinker.link(feature.properties['Nom_Arro'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Nom_Arro</th>\
+                        <td>' + (feature.properties['Nom_Arro'] !== null ? autolinker.link(feature.properties['Nom_Arro'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">ID_Arro</th>\
-                        <td>' + (feature.properties['ID_Arro'] !== null ? autolinker.link(feature.properties['ID_Arro'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['ID_Arro'] !== null ? autolinker.link(feature.properties['ID_Arro'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Nbre_Quar</th>\
-                        <td>' + (feature.properties['Nbre_Quar'] !== null ? autolinker.link(feature.properties['Nbre_Quar'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Nbre_Quar'] !== null ? autolinker.link(feature.properties['Nbre_Quar'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Popu_Arro</th>\
-                        <td>' + (feature.properties['Popu_Arro'] !== null ? autolinker.link(feature.properties['Popu_Arro'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Popu_Arro'] !== null ? autolinker.link(feature.properties['Popu_Arro'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Lat_Arro'] !== null ? autolinker.link(feature.properties['Lat_Arro'].toLocaleString()) : '') + '</td>\
@@ -127,7 +124,7 @@
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 2.0, 
+                weight: 1.0, 
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -149,8 +146,7 @@
         function pop_Section_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">nom</th>\
-                        <td>' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">num_sect</th>\
@@ -179,7 +175,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(74,170,202,1.0)',
+                fillColor: 'rgba(230,238,147,1.0)',
                 interactive: true,
             }
                     break;
@@ -194,7 +190,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(233,77,20,1.0)',
+                fillColor: 'rgba(253,149,111,1.0)',
                 interactive: true,
             }
                     break;
@@ -204,7 +200,7 @@
                 stroke: false, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,78,43,1.0)',
+                fillColor: 'rgba(204,184,181,1.0)',
                 interactive: true,
             }
                     break;
@@ -227,7 +223,8 @@
         function pop_Ilot_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ID_Ilot'] !== null ? autolinker.link(feature.properties['ID_Ilot'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ID_Ilot</th>\
+                        <td>' + (feature.properties['ID_Ilot'] !== null ? autolinker.link(feature.properties['ID_Ilot'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Num_Ilot</th>\
@@ -238,10 +235,18 @@
                         <td>' + (feature.properties['Num_Sec'] !== null ? autolinker.link(feature.properties['Num_Sec'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Sup_Ilot</th>\
+                        <td>' + (feature.properties['Sup_Ilot'] !== null ? autolinker.link(feature.properties['Sup_Ilot'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['perimeter'] !== null ? autolinker.link(feature.properties['perimeter'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Nbre_Lot'] !== null ? autolinker.link(feature.properties['Nbre_Lot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nat_Ilot'] !== null ? autolinker.link(feature.properties['Nat_Ilot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Quar_Ilot</th>\
+                        <td>' + (feature.properties['Quar_Ilot'] !== null ? autolinker.link(feature.properties['Quar_Ilot'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -277,7 +282,8 @@
         function pop_Lot_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ID</th>\
+                        <td>' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Num_Lot</th>\
@@ -312,8 +318,7 @@
                         <td>' + (feature.properties['Sup_Lot'] !== null ? autolinker.link(feature.properties['Sup_Lot'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Nat_Lot</th>\
-                        <td>' + (feature.properties['Nat_Lot'] !== null ? autolinker.link(feature.properties['Nat_Lot'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Nat_Lot'] !== null ? autolinker.link(feature.properties['Nat_Lot'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Lat_Lot'] !== null ? autolinker.link(feature.properties['Lat_Lot'].toLocaleString()) : '') + '</td>\
@@ -361,296 +366,50 @@
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Nom</th>\
-                        <td>' + (feature.properties['Nom'] !== null ? autolinker.link(feature.properties['Nom'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Rue</th>\
+                        <td>' + (feature.properties['Rue'] !== null ? autolinker.link(feature.properties['Rue'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Voirie_6_0(feature) {
-            switch(String(feature.properties['Nom'])) {
-                case '10 m':
-                    return {
+        function style_Voirie_6_0() {
+            return {
                 pane: 'pane_Voirie_6',
                 opacity: 1,
-                color: 'rgba(34,33,42,1.0)',
+                color: 'rgba(48,18,59,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
                 weight: 1.0,
                 fillOpacity: 0,
                 interactive: true,
-            }
-                    break;
-                case '12 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(97,97,97,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '15 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(255,1,18,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '20 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(31,228,162,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '25 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(234,74,130,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '30 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(178,223,138,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '60 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
             }
         }
-        function style_Voirie_6_1(feature) {
-            switch(String(feature.properties['Nom'])) {
-                case '10 m':
-                    return {
+        function style_Voirie_6_1() {
+            return {
                 pane: 'pane_Voirie_6',
                 opacity: 1,
-                color: 'rgba(155,139,239,1.0)',
+                color: 'rgba(48,18,59,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
                 weight: 1,
                 fillOpacity: 0,
                 interactive: true,
-            }
-                    break;
-                case '12 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(26,138,218,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '15 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(224,130,235,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '20 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(217,255,242,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '25 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(234,74,130,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '30 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(191,204,178,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '60 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(250,255,249,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
             }
         }
-        function style_Voirie_6_2(feature) {
-            switch(String(feature.properties['Nom'])) {
-                case '10 m':
-                    return {
+        function style_Voirie_6_2() {
+            return {
                 pane: 'pane_Voirie_6',
                 opacity: 1,
-                color: 'rgba(155,139,239,1.0)',
+                color: 'rgba(48,18,59,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
                 weight: 1,
                 fillOpacity: 0,
                 interactive: true,
-            }
-                    break;
-                case '12 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(26,138,218,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '15 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(224,130,235,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '20 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(31,228,162,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '25 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(234,74,130,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '30 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(178,223,138,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
-                case '60 m':
-                    return {
-                pane: 'pane_Voirie_6',
-                opacity: 1,
-                color: 'rgba(72,212,59,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-                    break;
             }
         }
         map.createPane('pane_Voirie_6');
@@ -688,7 +447,7 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Voirie<br /><table><tr><td style="text-align: center;"><img src="legend/Voirie_6_10m0.png" /></td><td>10 m</td></tr><tr><td style="text-align: center;"><img src="legend/Voirie_6_12m1.png" /></td><td>12 m</td></tr><tr><td style="text-align: center;"><img src="legend/Voirie_6_15m2.png" /></td><td>15 m</td></tr><tr><td style="text-align: center;"><img src="legend/Voirie_6_20m3.png" /></td><td>20 m</td></tr><tr><td style="text-align: center;"><img src="legend/Voirie_6_25m4.png" /></td><td>25 m</td></tr><tr><td style="text-align: center;"><img src="legend/Voirie_6_30m5.png" /></td><td>30 m</td></tr><tr><td style="text-align: center;"><img src="legend/Voirie_6_60m6.png" /></td><td>60 m</td></tr></table>': layer_Voirie_6,'<img src="legend/Lot_5.png" /> Lot': layer_Lot_5,'<img src="legend/Ilot_4.png" /> Ilot': layer_Ilot_4,'Section<br /><table><tr><td style="text-align: center;"><img src="legend/Section_3_section10.png" /></td><td>section 1</td></tr><tr><td style="text-align: center;"><img src="legend/Section_3_Section21.png" /></td><td>Section 2</td></tr><tr><td style="text-align: center;"><img src="legend/Section_3_Section42.png" /></td><td>Section 4</td></tr></table>': layer_Section_3,'<img src="legend/Arrondissement_2.png" /> Arrondissement': layer_Arrondissement_2,"OSM Standard": layer_OSMStandard_1,"Google Hybrid": layer_GoogleHybrid_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Voirie_6.png" /> Voirie': layer_Voirie_6,'<img src="legend/Lot_5.png" /> Lot': layer_Lot_5,'<img src="legend/Ilot_4.png" /> Ilot': layer_Ilot_4,'Section<br /><table><tr><td style="text-align: center;"><img src="legend/Section_3_section10.png" /></td><td>section 1</td></tr><tr><td style="text-align: center;"><img src="legend/Section_3_Section21.png" /></td><td>Section 2</td></tr><tr><td style="text-align: center;"><img src="legend/Section_3_Section42.png" /></td><td>Section 4</td></tr></table>': layer_Section_3,'<img src="legend/Arrondissement_2.png" /> Arrondissement': layer_Arrondissement_2,"OSM Standard": layer_OSMStandard_1,"Google Hybrid": layer_GoogleHybrid_0,}).addTo(map);
         setBounds();
         var i = 0;
         layer_Ilot_4.eachLayer(function(layer) {
@@ -696,7 +455,7 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Num_Ilot'] !== null?String('<div style="color: #e31a1c; font-size: 10pt; font-family: \'Arial Rounded MT Bold\', sans-serif;">' + layer.feature.properties['Num_Ilot']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Ilot_4'});
+            layer.bindTooltip((layer.feature.properties['Num_Ilot'] !== null?String('<div style="color: #ff7f00; font-size: 12pt; font-family: \'Arial Rounded MT Bold\', sans-serif;">' + layer.feature.properties['Num_Ilot']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Ilot_4'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -709,7 +468,7 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Num_Lot'] !== null?String('<div style="color: #000000; font-size: 8pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Num_Lot']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Lot_5'});
+            layer.bindTooltip((layer.feature.properties['Num_Lot'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Num_Lot']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Lot_5'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
